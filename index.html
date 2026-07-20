@@ -38,11 +38,13 @@ a {
 <div class="card" id="content"></div>
 
 <script>
-const page = window.location.pathname.toLowerCase();
+
+const params = new URLSearchParams(window.location.search);
+const page = params.get("page");
 
 let content = "";
 
-if (page.includes("tos")) {
+if (page === "tos") {
 
 content = `
 <h1>DonutVRx Bot</h1>
@@ -135,10 +137,9 @@ Continued use of the Bot after changes become effective constitutes acceptance o
 
 If you have questions about these Terms of Service, please contact the developer through the official DonutVRxBot support server or another official contact method.
 </p>
-
 `;
 
-} else if (page.includes("privacy")) {
+} else if (page === "privacy") {
 
 content = `
 <h1>DonutVRx Bot</h1>
@@ -260,7 +261,6 @@ This Privacy Policy may be updated from time to time. Continued use of the Bot a
 
 If you have questions about this Privacy Policy or wish to request data removal, please contact the developer of DonutVRxBot through the official Discord support server or other official contact method.
 </p>
-
 `;
 
 } else {
@@ -271,14 +271,15 @@ content = `
 <p>Select a page:</p>
 
 <ul>
-<li><a href="tos">Terms of Service</a></li>
-<li><a href="privacy">Privacy Policy</a></li>
+<li><a href="?page=tos">Terms of Service</a></li>
+<li><a href="?page=privacy">Privacy Policy</a></li>
 </ul>
 `;
 
 }
 
 document.getElementById("content").innerHTML = content;
+
 </script>
 
 </body>
